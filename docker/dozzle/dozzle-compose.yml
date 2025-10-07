@@ -10,4 +10,9 @@ services:
     environment:
       - DOZZLE_ENABLE_ACTIONS=true        # allow start/stop/restart
       - DOZZLE_ENABLE_SHELL=true          # allow opening a shell (exec)
+    labels:
+      - "homepage.name=Dozzle"
 
+networks:
+  ingress-network:
+    external: true
