@@ -15,6 +15,7 @@ services:
       - PUID=1000
       - PGID=1000
       - HOMEPAGE_ALLOWED_HOSTS=basserver.local,localhost,127.0.0.1
+      - HOMEPAGE_DOCKER=true
 
 networks:
   ingress-network:
