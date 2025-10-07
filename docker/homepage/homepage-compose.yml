@@ -9,7 +9,7 @@ services:
       - "80:3000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /opt/docker/homepage/config:/app/config
+      - ./config:/app/config
     environment:
       - TZ=Europe/Amsterdam
       - PUID=1000

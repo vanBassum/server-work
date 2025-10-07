@@ -11,9 +11,11 @@ services:
       - DOZZLE_ENABLE_ACTIONS=true        # allow start/stop/restart
       - DOZZLE_ENABLE_SHELL=true          # allow opening a shell (exec)
     labels:
+      - "homepage.group=Dashboard"
       - "homepage.name=Dozzle"
       - "homepage.icon=dozzle"
-      - "homepage.href=http://dozzle:8080"
+      - "homepage.href=http://basserver:8080"
+
 
 networks:
   ingress-network:
