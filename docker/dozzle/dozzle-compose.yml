@@ -12,6 +12,8 @@ services:
       - DOZZLE_ENABLE_SHELL=true          # allow opening a shell (exec)
     labels:
       - "homepage.name=Dozzle"
+      - "homepage.icon=dozzle"
+      - "homepage.href=http://dozzle:8080"
 
 networks:
   ingress-network:
