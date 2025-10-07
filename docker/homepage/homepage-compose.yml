@@ -6,7 +6,7 @@ services:
     networks:
       - ingress-network
     ports:
-      - "3000:80"
+      - "80:3000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /opt/docker/homepage/config:/app/config
