@@ -1,0 +1,22 @@
+services:
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - ingress-network
+    volumes:
+      - /opt/docker/influxdb/config:/etc/influxdb2
+      - /opt/docker/influxdb/db:/var/lib/influxdb2
+    environment:
+      - INFLUXD_HTTP_AUTH_ENABLED=false
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_ORG=main
+      - DOCKER_INFLUXDB_INIT_BUCKET=default
+    ports:
+      - "8086:8086"
+networks:
+  ingress-network:
+    external: true

@@ -27,3 +27,13 @@ pull:
 
 ps:
 	@docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
+
+setup:
+	@echo "🔧 Creating shared networks if they don't exist..."
+	@docker compose -f docker-networks.yml up -d 2>/dev/null || true
+	@docker network ls | grep network
+
+cleanup:
+	@echo "🧹 Removing shared networks..."
+	@docker compose -f docker-networks.yml down
+	

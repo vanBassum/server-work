@@ -1,0 +1,8 @@
+networks:
+  ingress-network:
+    name: ingress-network
+    driver: bridge
+
+  backend-network:
+    name: backend-network
+    driver: bridge
