@@ -8,6 +8,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
-      - DOZZLE_SHOW_ALL=true
-      - DOZZLE_ENABLE_ACTIONS=true
-      - DOZZLE_ENABLE_SHELL=true
+      - DOZZLE_ENABLE_ACTIONS=true        # allow start/stop/restart
+      - DOZZLE_ENABLE_SHELL=true          # allow opening a shell (exec)
+
