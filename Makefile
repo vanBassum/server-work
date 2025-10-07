@@ -1,11 +1,22 @@
 SHELL := /bin/bash
 
+# Ensure shared networks exist
+setup:
+	@echo "Creating shared networks if they don't exist..."
+	@if ! docker network inspect ingress-network >/dev/null 2>&1; then \
+		echo "Creating ingress-network..."; \
+		docker network create ingress-network; \
+	else \
+		echo "ingress-network already exists."; \
+	fi
+	@echo "Networks ready."
+
 # Start all or one stack
 up:
 	@if [ -n "$(stack)" ]; then \
 		echo "Starting stack: $(stack)..."; \
 		file=$$(find $(CURDIR)/docker/$(stack) -maxdepth 1 -type f -name "$(stack)-compose.yml"); \
-		if [ -n "$$file" ]; then docker compose -f "$$file" up -d; else echo "❌ Compose file for $(stack) not found."; fi; \
+		if [ -n "$$file" ]; then docker compose -f "$$file" up -d; else echo "Compose file for $(stack) not found."; fi; \
 	else \
 		echo "Starting all stacks..."; \
 		find $(CURDIR)/docker -maxdepth 2 -type f -name "*-compose.yml" -execdir docker compose -f {} up -d \; ; \
@@ -15,7 +26,7 @@ down:
 	@if [ -n "$(stack)" ]; then \
 		echo "Stopping stack: $(stack)..."; \
 		file=$$(find $(CURDIR)/docker/$(stack) -maxdepth 1 -type f -name "$(stack)-compose.yml"); \
-		if [ -n "$$file" ]; then docker compose -f "$$file" down; else echo "❌ Compose file for $(stack) not found."; fi; \
+		if [ -n "$$file" ]; then docker compose -f "$$file" down; else echo "Compose file for $(stack) not found."; fi; \
 	else \
 		echo "Stopping all stacks..."; \
 		find $(CURDIR)/docker -maxdepth 2 -type f -name "*-compose.yml" -execdir docker compose -f {} down \; ; \
@@ -27,13 +38,3 @@ pull:
 
 ps:
 	@docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
-
-setup:
-	@echo "🔧 Creating shared networks if they don't exist..."
-	@docker compose -f docker-networks.yml up -d 2>/dev/null || true
-	@docker network ls | grep network
-
-cleanup:
-	@echo "🧹 Removing shared networks..."
-	@docker compose -f docker-networks.yml down
-	
