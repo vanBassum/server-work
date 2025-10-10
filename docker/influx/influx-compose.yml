@@ -8,8 +8,8 @@ services:
     networks:
       - ingress-network
     volumes:
-      - /opt/docker/influxdb/config:/etc/influxdb2
-      - /opt/docker/influxdb/db:/var/lib/influxdb2
+      - ./config:/etc/influxdb2
+      - ./data:/var/lib/influxdb2
     environment:
       - INFLUXD_HTTP_AUTH_ENABLED=false
       - DOCKER_INFLUXDB_INIT_MODE=setup
