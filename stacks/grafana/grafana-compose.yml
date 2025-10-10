@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
+    user: "docker:docker"
     networks:
       - ingress-network
     volumes:
