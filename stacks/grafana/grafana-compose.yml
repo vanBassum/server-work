@@ -9,7 +9,6 @@ services:
     networks:
       - ingress-network
     volumes:
-      - ./config:/etc/grafana                   # configuration
       - ${DATA}/grafana/data:/var/lib/grafana   # persistent data
     ports:
       - "3000:3000"
