@@ -10,13 +10,6 @@ services:
     volumes:
       - ./config:/etc/influxdb2
       - ${DATA}/influx/data:/var/lib/influxdb2
-    environment:
-      - INFLUXD_HTTP_AUTH_ENABLED=false
-      - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_ORG=main
-      - DOCKER_INFLUXDB_INIT_BUCKET=default
-      - DOCKER_INFLUXDB_INIT_USERNAME=admin
-      - DOCKER_INFLUXDB_INIT_PASSWORD=9J2BBH5EZCUYM49S
     ports:
       - "8086:8086"
     labels:
