@@ -13,6 +13,7 @@ services:
     environment:
       - SB_USER=admin:admin
       - SB_SPACE_DIR=/space
+      - SB_UNSAFE_HTTP=true
     ports:
       - "3001:3000"
     labels:
