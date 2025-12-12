@@ -1,0 +1,27 @@
+services:
+  silverbullet:
+    image: zefhemel/silverbullet:latest
+    container_name: silverbullet
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    user: "${PUID}:${PGID}"
+    networks:
+      - ingress-network
+    volumes:
+      - ${DATA}/silverbullet/space:/space
+    environment:
+      - SB_USER=admin
+      - SB_PASSWORD=admin
+      - SB_SPACE_DIR=/space
+    ports:
+      - "3001:3000"
+    labels:
+      - "homepage.group=Notes"
+      - "homepage.name=SilverBullet"
+      - "homepage.icon=markdown"
+      - "homepage.href=http://basserver:3001"
+
+networks:
+  ingress-network:
+    external: true
