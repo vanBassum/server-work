@@ -11,8 +11,7 @@ services:
     volumes:
       - ${DATA}/silverbullet/space:/space
     environment:
-      - SB_USER=admin
-      - SB_PASSWORD=admin
+      - SB_USER=admin:admin
       - SB_SPACE_DIR=/space
     ports:
       - "3001:3000"
