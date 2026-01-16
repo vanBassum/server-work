@@ -7,7 +7,7 @@ services:
     ports:
       - "3100:3100"
     volumes:
-      - ./config/config.yml:/etc/loki/config.yml:ro
+      - ./config/:/etc/loki/
       - ${DATA}/loki:/loki
     networks:
       - ingress-network
