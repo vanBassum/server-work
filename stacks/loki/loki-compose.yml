@@ -2,6 +2,7 @@ services:
   loki:
     image: grafana/loki:2.9.8
     container_name: loki
+    user: "0:0"
     restart: unless-stopped
     command: -config.file=/etc/loki/config.yml
     ports:
