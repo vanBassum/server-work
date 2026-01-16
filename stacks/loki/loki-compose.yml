@@ -1,0 +1,17 @@
+services:
+  loki:
+    image: grafana/loki:2.9.8
+    container_name: loki
+    restart: unless-stopped
+    command: -config.file=/etc/loki/config.yml
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./config/config.yml:/etc/loki/config.yml:ro
+      - ${DATA}/loki:/loki
+    networks:
+      - ingress-network
+
+networks:
+  ingress-network:
+    external: true
