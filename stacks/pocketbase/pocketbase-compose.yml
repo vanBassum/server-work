@@ -1,12 +1,12 @@
 services:
   pocketbase:
-    image: ghcr.io/pocketbase/pocketbase:0.22.21
+    image: ghcr.io/muchobien/pocketbase:latest
     container_name: pocketbase
     restart: unless-stopped
     ports:
       - "8090:8090"
     volumes:
-      - ${DATA}/pocketbase:/pb/pb_data
+      - ${DATA}/pocketbase:/pb_data
     networks:
       - ingress-network
 
