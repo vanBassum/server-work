@@ -1,8 +1,0 @@
-title: "Bas server Dashboard"
-theme: dark
-color: slate
-language: en
-showStats: true
-iconStyle: outline
-layout:
-  - Dashboard
