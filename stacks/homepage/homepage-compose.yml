@@ -1,6 +1,6 @@
 services:
   homepage:
-    image: ghcr.io/vanBassum/homepage:latest
+    image: ghcr.io/vanbassum/homepage:latest
     container_name: homepage
     restart: unless-stopped
     networks:
