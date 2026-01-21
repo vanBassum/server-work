@@ -6,7 +6,7 @@ services:
     networks:
       - ingress-network
     ports:
-      - "80:3000"
+      - "80:8080"
     volumes:
       - ${DATA}/homepage/data:/data
 
