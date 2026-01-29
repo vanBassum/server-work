@@ -20,8 +20,8 @@ services:
       - PORT=3000
 
       # Security (CHANGE THESE)
-      - SECRET_KEY=admin
-      - UTILS_SECRET=admin
+      - SECRET_KEY=c23bbba90c436230705383b28a23e448f17fe8dbeece0582f86bb221361d664a
+      - UTILS_SECRET=c23bbba90c436230705383b28a23e448f17fe8dbeece0582f86bb221361d664a
 
       # Database
       - DATABASE_URL=postgres://outline:outline@postgres:5432/outline
