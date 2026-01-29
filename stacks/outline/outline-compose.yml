@@ -16,7 +16,7 @@ services:
     environment:
       # Basic
       - NODE_ENV=production
-      - URL=http://basserver:3002
+      - URL=http://basserver.local:3002
       - PORT=3000
 
       # Security (CHANGE THESE)
