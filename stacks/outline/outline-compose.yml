@@ -1,0 +1,62 @@
+services:
+  outline:
+    image: outlinewiki/outline:latest
+    container_name: outline
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    user: "${PUID}:${PGID}"
+    networks:
+      - ingress-network
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ${DATA}/outline/data:/var/lib/outline/data
+    environment:
+      # Basic
+      - NODE_ENV=production
+      - URL=http://basserver:3002
+      - PORT=3000
+
+      # Security (CHANGE THESE)
+      - SECRET_KEY=admin
+      - UTILS_SECRET=admin
+
+      # Database
+      - DATABASE_URL=postgres://outline:outline@postgres:5432/outline
+
+      # Redis
+      - REDIS_URL=redis://redis:6379
+
+      # Auth (simple local auth enabled)
+      - ENABLED_AUTH_STRATEGIES=local
+
+    ports:
+      - "3002:3000"
+
+  postgres:
+    image: postgres:15
+    container_name: outline-postgres
+    restart: unless-stopped
+    networks:
+      - ingress-network
+    volumes:
+      - ${DATA}/outline/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=outline
+      - POSTGRES_PASSWORD=outline
+      - POSTGRES_DB=outline
+
+  redis:
+    image: redis:7
+    container_name: outline-redis
+    restart: unless-stopped
+    networks:
+      - ingress-network
+    volumes:
+      - ${DATA}/outline/redis:/data
+
+networks:
+  ingress-network:
+    external: true
