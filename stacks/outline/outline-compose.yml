@@ -25,6 +25,7 @@ services:
 
       # Database
       - DATABASE_URL=postgres://outline:outline@postgres:5432/outline
+      - PGSSLMODE=disable
 
       # Redis
       - REDIS_URL=redis://redis:6379
